@@ -1,0 +1,29 @@
+{
+  "name": "local-vcr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel index.js --out-dir ./dist && node ./dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "daemon": "^1.1.0",
+    "daemonize-process": "^2.0.1",
+    "date-fns": "^1.30.1",
+    "find-process": "^1.4.2",
+    "jsonfile": "^5.0.0",
+    "lodash": "^4.17.15",
+    "opn": "^6.0.0",
+    "shelljs": "^0.8.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/runtime": "^7.5.5"
+  }
+}
