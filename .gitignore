@@ -2,4 +2,5 @@
 /workspace.xml
 node_modules/
 dist/
+archive/
 .idea/

@@ -3,8 +3,14 @@ import find from 'find-process'
 import format from 'date-fns/format'
 import jsonFile from 'jsonfile'
 import daemonizeProcess from 'daemonize-process'
+import mkdirp from 'mkdirp'
 // import opn from 'opn'
 
+// Ensure root dir exists
+const rootDirName = `./archive/${format(Date.now(), 'MMM-DD-YYYY')}`
+mkdirp.sync(rootDirName)
+
+//Global variables
 const pollIntervalMs = 60000
 
 setInterval(() => {
@@ -14,7 +20,7 @@ setInterval(() => {
     const formattedDate = format(timeStamp, 'MMM-DD-YYYY')
     const formattedDateTime = format(timeStamp, 'MMM-DD-YYYY--hh:mm_A')
     const minutes = parseInt(format(timeStamp, 'mm'))
-    const jsonFileName = `./${formattedDate}.json`
+    const jsonFileName = `${formattedDate}.json`
     let imageName = null
 
     // Get active window meta data
@@ -28,7 +34,7 @@ setInterval(() => {
     if (minutes === 0 || (minutes % 5) === 0) {
       // TODO: Process image for ocr
       imageName = `${formattedDateTime}.jpg`
-      shelljs.exec(`scrot -u "${imageName}"`)
+      shelljs.exec(`scrot -u "${rootDirName}/${imageName}"`)
     }
 
     // Collate all data to be saved
@@ -41,7 +47,7 @@ setInterval(() => {
     }
 
     // Save details on JSON
-    jsonFile.writeFileSync(jsonFileName, dataToSave, {flag: 'a'})
+    jsonFile.writeFileSync(`${rootDirName}/${jsonFileName}`, dataToSave, {flag: 'a'})
   })()
 }, pollIntervalMs)
 
