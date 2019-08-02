@@ -4,6 +4,7 @@ import format from 'date-fns/format'
 import jsonFile from 'jsonfile'
 import daemonizeProcess from 'daemonize-process'
 import mkdirp from 'mkdirp'
+import {checkSystemMemory} from './checkSystemMemory'
 // import opn from 'opn'
 
 // Ensure root dir exists
@@ -48,6 +49,9 @@ setInterval(() => {
 
     // Save details on JSON
     jsonFile.writeFileSync(`${rootDirName}/${jsonFileName}`, dataToSave, {flag: 'a'})
+
+    // check RAM if it is about to be full. Then notify user if almost full
+    await checkSystemMemory()
   })()
 }, pollIntervalMs)
 
