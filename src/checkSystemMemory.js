@@ -13,8 +13,8 @@ export const checkSystemMemory = async () => {
   const freeRamPercentageThreshold = 0.1
 
   // Get system info using free command from shell
-  const getMaxRam = shelljs.exec('free -m |awk \'NR == 2\'| awk \'{print $2}\'')
-  const getAvailableRam = shelljs.exec('free -m |awk \'NR == 2\'| awk \'{print $7}\'')
+  const getMaxRam = shelljs.exec('free -m |awk \'NR == 2\'| awk \'{print $2}\'', {silent: true})
+  const getAvailableRam = shelljs.exec('free -m |awk \'NR == 2\'| awk \'{print $7}\'', {silent: true})
   const maxRam = parseInt(getMaxRam.stdout.trim())
   const availableRam = parseInt(getAvailableRam.stdout.trim())
 

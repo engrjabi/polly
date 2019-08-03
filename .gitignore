@@ -4,3 +4,4 @@ node_modules/
 dist/
 archive/
 .idea/
+/lang-data
