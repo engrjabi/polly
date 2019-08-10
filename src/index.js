@@ -1,6 +1,7 @@
 import { checkSystemMemory } from "./checkSystemMemory";
 import { trackIt } from "./trackIt";
 import daemonizeProcess from "daemonize-process";
+import { localServerNotifier } from "./localServerNotifier";
 
 const pollIntervalMs = 90000;
 
@@ -17,6 +18,9 @@ const mainThread = async () => {
 };
 
 mainThread().then(() => console.log("LOCAL VCR STARTED"));
+
+// Launch local server for notification
+localServerNotifier("3069");
 
 // Let process run in background
 daemonizeProcess();
