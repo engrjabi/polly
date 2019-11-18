@@ -23,4 +23,4 @@ mainThread().then(() => console.log("LOCAL VCR STARTED"));
 localServerNotifier("3069");
 
 // Let process run in background
-daemonizeProcess();
+// daemonizeProcess();
